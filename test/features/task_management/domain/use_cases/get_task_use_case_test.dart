@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:task_manager/features/task_management/domain/entities/task_entity.dart';
-import 'package:task_manager/features/task_management/domain/repositories/task_repository.dart';
-import 'package:task_manager/features/task_management/domain/use_cases/get_task_use_case.dart';
+import 'package:task_manager/src/features/task_management/domain/entities/task_entity.dart';
+import 'package:task_manager/src/features/task_management/domain/repositories/task_repository.dart';
+import 'package:task_manager/src/features/task_management/domain/use_cases/get_task_use_case.dart';
 
 class MockTaskRepository extends Mock implements TaskRepository {}
 
