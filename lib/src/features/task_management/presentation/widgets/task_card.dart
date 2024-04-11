@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_manager/src/app/theme/app_colors.dart';
+import 'package:task_manager/src/core/common/widgets/text_view.dart';
 import 'package:task_manager/src/features/injection.dart';
 import 'package:task_manager/src/features/task_management/domain/entities/task_entity.dart';
 import 'package:task_manager/src/features/task_management/presentation/bloc/task_bloc.dart';
@@ -21,18 +23,10 @@ class TaskItem extends StatelessWidget {
         key: Key(taskEntity.id.toString()),
         background: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Colors.white30,
             borderRadius: BorderRadius.circular(18),
           ),
           padding: EdgeInsets.only(right: 20.0),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Icon(
-              Icons.account_balance_wallet_outlined,
-              color: Colors.white,
-              size: 30.0,
-            ),
-          ),
         ),
         direction: DismissDirection.horizontal,
         onDismissed: (direction) {
@@ -117,6 +111,21 @@ class TaskItem extends StatelessWidget {
           },
           child: Row(
             children: [
+              SizedBox(width: 10.0),
+              const Row(
+                children: [
+                  Icon(
+                    Icons.arrow_forward,
+                    color: AppColors.blue,
+                    size: 22,
+                  ),
+                  Icon(
+                    Icons.edit,
+                    color: AppColors.blue,
+                    size: 22,
+                  ),
+                ],
+              ),
               Container(
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.symmetric(
@@ -154,6 +163,20 @@ class TaskItem extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              const Row(
+                children: [
+                  Icon(
+                    Icons.delete,
+                    color: Colors.redAccent,
+                    size: 22,
+                  ),
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.redAccent,
+                    size: 22,
+                  )
+                ],
               ),
               SizedBox(width: 10.0),
             ],

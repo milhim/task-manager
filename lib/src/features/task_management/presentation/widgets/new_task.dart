@@ -155,60 +155,48 @@ class _NewTaskState extends State<NewTask> {
                     return null;
                   },
                 ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 10,
-                    bottom: 30,
+                TextFormField(
+                  readOnly: true,
+                  controller: _dateController,
+                  decoration: InputDecoration(labelText: 'Date'),
+                  enableInteractiveSelection: false,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please pick a date';
+                    }
+                    return null;
+                  },
+                ),
+                MaterialButton(
+                  onPressed: _startDatePicker,
+                  child: Text(
+                    'Choose Date',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 16,
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          readOnly: true,
-                          controller: _dateController,
-                          decoration: InputDecoration(labelText: 'Date'),
-                          enableInteractiveSelection: false,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please pick a date';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      MaterialButton(
-                        onPressed: _startDatePicker,
-                        child: Text(
-                          'Choose Date',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      MaterialButton(
-                        onPressed: _onSubmit,
-                        child: Text(
-                          widget.state == NewTaskState.add ? 'Add Task' : 'Update',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                        color: Theme.of(context).primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
+                ),
+                MaterialButton(
+                  onPressed: _onSubmit,
+                  child: Text(
+                    widget.state == NewTaskState.add ? 'Add Task' : 'Update',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
+                  color: Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
               ],
             ),

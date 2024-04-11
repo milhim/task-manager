@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/src/core/common/widgets/error_view.dart';
 import 'package:task_manager/src/core/common/widgets/loading_view.dart';
+import 'package:task_manager/src/core/utils/helpers/convert_string_to_color.dart';
 import 'package:task_manager/src/features/injection.dart';
 import 'package:task_manager/src/features/task_management/domain/entities/task_entity.dart';
 import 'package:task_manager/src/features/task_management/presentation/bloc/task_bloc.dart';
+import 'package:task_manager/src/features/task_management/presentation/widgets/detailes_row.dart';
 import 'package:task_manager/src/features/task_management/presentation/widgets/new_task.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -44,7 +46,43 @@ class _DetailsPageState extends State<DetailsPage> {
                   children: [
                     DetailsRow(title: 'ID:', content: task.id.toString()),
                     DetailsRow(title: 'Name:', content: task.name),
-                    DetailsRow(title: 'Color:', content: task.color),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      child: Center(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Color',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColorDark, fontSize: 18.0, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration:
+                                      BoxDecoration(borderRadius: BorderRadius.circular(50), color: hexToColor(task.color)),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  task.color,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     DetailsRow(title: 'Pantone Value:', content: task.pantoneValue),
                     DetailsRow(title: 'Added:', content: task.year.toString()),
                   ],
@@ -90,44 +128,6 @@ class _DetailsPageState extends State<DetailsPage> {
           }
         },
         child: Icon(Icons.edit),
-      ),
-    );
-  }
-}
-
-class DetailsRow extends StatelessWidget {
-  final String title;
-  final String content;
-
-  const DetailsRow({
-    Key? key,
-    required this.title,
-    required this.content,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: TextStyle(color: Theme.of(context).primaryColorDark, fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Text(
-              content,
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
